@@ -21,18 +21,19 @@ function getToken() {
 
 function App() {
   const [token, setToken] = useState(getToken());
+  // console.log(token)
   return (
     <Router>
       {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<MainContent user_details={token} />} />
         <Route path="/login" element={token?<Navigate to='/'/>:<MainLogin set_token={setToken} />} />
-        <Route path="/aboutus" element={<MainAboutUs />} />
-        <Route path="/features" element={<MainFeatures />} />
-        <Route path="/blog" element={<MainBlog />} />
-        <Route path="/pricing" element={<MainPricing />} />
-        <Route path="/demo" element={<MainDemo  />} />
-        <Route path="/contact" element={<MainContact />} />
+        <Route path="/aboutus" element={<MainAboutUs user_details={token} />} />
+        <Route path="/features" element={<MainFeatures user_details={token} />} />
+        <Route path="/blog" element={<MainBlog user_details={token} />} />
+        <Route path="/pricing" element={<MainPricing user_details={token} />} />
+        <Route path="/demo" element={<MainDemo user_details={token} />} />
+        <Route path="/contact" element={<MainContact user_details={token} />} />
         <Route exact path="/create_subscription" Component={PaymentPage} />
       </Routes>
       {/* <Footer /> */}

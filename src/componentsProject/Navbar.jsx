@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // Use react-router-dom Link
 import Logo from '../assets/logoMain.png';
 import { MenuIcon, XIcon } from 'lucide-react';
+import { IoLogOut } from "react-icons/io5";
 
-const Navbar = () => {
+const Navbar = ({ user_details }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -70,14 +71,22 @@ const Navbar = () => {
           </ul>
 
           {/* Button for larger devices */}
-          <div className='space-x-2 hidden lg:flex items-center'>
-            <a href='/login' className='hidden lg:flex items-center duration-300 text-brandPrimary hover:text-neutralDGrey border border-transparent hover:border-neutralDGrey px-4 py-2 rounded'>
-              Login
-            </a>
-            <Link to="/pricing">
-              <button className='bg-brandPrimary text-white px-4 py-2 transition-all duration-300 rounded hover:bg-neutralDGrey'>Sign up</button>
-            </Link>
-          </div>
+          {user_details ? (
+            <div className='space-x-2 hidden lg:flex items-center'>
+              <a href='/login' className='hidden lg:flex items-center duration-300 text-brandPrimary hover:text-neutralDGrey border border-transparent hover:border-neutralDGrey px-4 py-2 rounded'>
+                Login
+              </a>
+              <Link to="/pricing">
+                <button className='bg-brandPrimary text-white px-4 py-2 transition-all duration-300 rounded hover:bg-neutralDGrey'>Sign up</button>
+              </Link>
+            </div>
+          ) : (
+            <div className='flex flex-row justify-end items-center gap-4'>
+              <p>Welcome back, user!</p>
+              <IoLogOut className='text-black duration-300 hover:text-red-600 w-7 h-7 hover:scale-105 cursor-pointer' />
+            </div>
+          )
+          }
 
           {/* Menu button for only mobile devices */}
           <div className='md:hidden'>

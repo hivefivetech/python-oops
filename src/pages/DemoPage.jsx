@@ -5,10 +5,10 @@ import SoftwareDemo from '@/componentsProject/SoftwareDemo';
 import SoftwareDemoFirstSection from '@/componentsProject/SoftwareDemoFirstSection';
 import React from 'react';
 
-function MainDemo() {
+function MainDemo(user_details) {
     return (
         <>
-            <Navbar />
+            <Navbar user_details={user_details} />
             <SoftwareDemo />
             <SoftwareDemoFirstSection />
             <Footer />

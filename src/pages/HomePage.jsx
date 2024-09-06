@@ -11,7 +11,7 @@ import Footer from '@/componentsProject/Footer';
 function MainContent(user_details) {
     return (
         <>
-            <Navbar />
+            <Navbar user_details={user_details} />
             <Home />
             <Services />
             <ObjectDetectionApp />

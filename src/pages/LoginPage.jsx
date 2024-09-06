@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { Lock, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -12,26 +12,28 @@ function Login(set_token) {
     const [password, setPassword] = useState("");
 
     const signIn = async (e) => {
-        
+
         e.preventDefault();
         try {
-            
-            await axios.post(API_URL + 'signin_account', { email: email, password: password }).
-            then((response) => {
-
-                console.log(response.data);
-
+            await axios.post(API_URL + 'signin_account',
+                { email: email, password: password },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                }
+            ).then((response) => {
+                console.log('Response Data:', response.data);
+                localStorage.setItem('tokenAiRemovals', JSON.stringify(response.data));
+                set_token(response.data);
+                window.location.href = '/';
             }).
-            catch ((error) => {
-                console.error(error.data);
-            }); 
-
-            // localStorage.setItem('token', response.data.access_token);
-            window.location.href = '/';
+                catch((error) => {
+                    console.error('Error Data:', error.data);
+                });
         } catch (error) {
             console.error(error);
         }
-
     }
 
     return (

@@ -6,10 +6,10 @@ import AboutusBodySecondSection from '@/componentsProject/AboutusBodySecondSecti
 import Navbar from '@/componentsProject/Navbar';
 import Footer from '@/componentsProject/Footer';
 
-function MainAboutUs() {
+function MainAboutUs(user_details) {
     return (
         <>
-            <Navbar />
+            <Navbar user_details={user_details} />
             <Aboutus />
             <AboutusBodyFirstSection />
             <AboutusBodySecondSection />
