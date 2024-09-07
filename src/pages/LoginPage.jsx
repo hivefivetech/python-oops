@@ -8,7 +8,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 const API_URL = "https://backend.srv560349.hstgr.cloud/"
-function Login(set_token) {
+function Login({set_token}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,14 +27,18 @@ function Login(set_token) {
                     }
                 }
             ).then((response) => {
-                console.log('Response Data:', response.data);
-                localStorage.setItem('tokenAiRemovals', JSON.stringify(response.data));
-                set_token(response.data);
+                let resp = response.data;
+                console.log('Response Data:', resp);
+                localStorage.setItem('tokenAiRemovals', JSON.stringify(resp));
+                console.log("here")
+                set_token(resp);
+                console.log("heree")
                 setOpen(false)
+                console.log("ouch")
                 window.location.href = '/';
             }).
                 catch((error) => {
-                    console.error('Error Data:', error.data);
+                    console.error('Error Data:', error);
                     setOpen(false);
                 });
         } catch (error) {
