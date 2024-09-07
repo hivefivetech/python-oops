@@ -4,17 +4,21 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import axios from "axios";
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const API_URL = "https://backend.srv560349.hstgr.cloud/"
 function Login(set_token) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [open, setOpen] = React.useState(false);
 
     const signIn = async (e) => {
 
         e.preventDefault();
         try {
+            setOpen(true);
             await axios.post(API_URL + 'signin_account',
                 { email: email, password: password },
                 {
@@ -26,18 +30,27 @@ function Login(set_token) {
                 console.log('Response Data:', response.data);
                 localStorage.setItem('tokenAiRemovals', JSON.stringify(response.data));
                 set_token(response.data);
+                setOpen(false)
                 window.location.href = '/';
             }).
                 catch((error) => {
                     console.error('Error Data:', error.data);
+                    setOpen(false);
                 });
         } catch (error) {
             console.error(error);
+            setOpen(false)
         }
     }
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+            <Backdrop
+                sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+                open={open}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
             <Card className="w-full max-w-xl px-0 sm:px-8 py-8 space-y-6 bg-white shadow-lg rounded-lg">
                 <CardHeader>
                     <CardTitle className="text-2xl font-semibold text-center text-gray-900">

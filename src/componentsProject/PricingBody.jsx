@@ -175,7 +175,7 @@ const PricingBody = () => {
                     </div>
 
                     <div className='flex justify-center items-center py-12'>
-                    <Link to="/create_subscription" state={{ priceId: "price_1Pl5G4DwjbcVhxIp9l0VbjuJ", purchase_type: "oneoff", plan: 'custom' }}>
+                    <Link to="/create_subscription" state={{ priceId: "price_1Pl5G4DwjbcVhxIp9l0VbjuJ", purchase_type: "custom", plan: 'oneoff' }}>
                         <button className='bg-[#a608c1] px-6 py-2 text-white text-[16px] rounded-sm hover:bg-[#85069a] duration-300 hover:scale-90'>
                             <p>PAY NOW</p>
                         </button>
