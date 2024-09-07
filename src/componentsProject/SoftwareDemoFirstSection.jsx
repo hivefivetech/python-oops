@@ -218,7 +218,7 @@ const SoftwareDemoFirstSection = () => {
                                     &times;
                                 </button>
                             </div>
-                            
+
                             <video
                                 src="path_to_your_demo_video.mp4"
                                 controls
@@ -293,7 +293,7 @@ const SoftwareDemoFirstSection = () => {
                 {selectedFiles.length > 0 && !open && (
                     <button
                         onClick={handleStartDetection}
-                        className="mt-6 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                        className="mt-6 px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-44"
                     >
                         Start Detection
                     </button>

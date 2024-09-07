@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Lock, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
@@ -86,7 +86,11 @@ function Login(set_token) {
                                 Forgot password?
                             </a> */}
                         </div>
-                        <Button type="submit" onClick={signIn} className="w-full py-2 text-white bg-gray-900 hover:bg-gray-700 rounded-md">
+                        <Button
+                            type="submit"
+                            onClick={signIn} 
+                            className="w-full py-2 text-white bg-gray-900 hover:bg-gray-700 rounded-md"
+                        >
                             Sign In
                         </Button>
                     </div>
