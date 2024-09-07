@@ -1,8 +1,8 @@
 import React from 'react';
 import BannerImg from '../assets/banner-img.jpg';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Home = () => {
+const Home = ({ user_details }) => {
     return (
         <div className='home-container' id='home'>
             <div className='px-4 md:px-14 lg:px-6 max-w-screen-2xl mx-auto min-h-screen h-screen flex justify-center items-center'>
@@ -16,8 +16,10 @@ const Home = () => {
                             Advanced Furniture Object Detection Software for Removals Companies, Solicitors, and Insurance Firms
                         </p>
                         <Link to="/demo">
-                            <button  className='px-7 py-3 bg-brandPrimary rounded text-white text-[18px] duration-300 hover:bg-neutralDGrey hover:translate-y-[-4px] cursor-pointer'>
-                                Check Our Demo
+                            <button className='px-7 py-3 bg-brandPrimary rounded text-white text-[18px] duration-300 hover:bg-neutralDGrey hover:translate-y-[-4px] cursor-pointer'>
+                                {user_details ?
+                                    "Validate Image" : "Check Our Demo"
+                                }
                             </button>
                         </Link>
                     </div>

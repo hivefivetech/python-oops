@@ -5,10 +5,10 @@ import Pricing from '@/componentsProject/Pricing';
 import PricingBody from '@/componentsProject/PricingBody';
 import React from 'react';
 
-function MainPricing(user_details) {
+function MainPricing({ user_details, set_token }) {
     return (
         <>
-            <Navbar user_details={user_details} />
+            <Navbar user_details={user_details} set_token={set_token} />
             <Pricing />
             <PricingBody />
             <Footer />

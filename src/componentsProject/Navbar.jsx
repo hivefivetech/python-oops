@@ -4,7 +4,7 @@ import Logo from '../assets/logoMain.png';
 import { MenuIcon, XIcon } from 'lucide-react';
 import { IoLogOut } from "react-icons/io5";
 
-const Navbar = ({ user_details }) => {
+const Navbar = ({ user_details, set_token }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -27,6 +27,11 @@ const Navbar = ({ user_details }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const handleLogout = () => {
+    set_token()
+    localStorage.clear()
+  }
 
   // NavItems Array
   const navItems = [
@@ -71,7 +76,7 @@ const Navbar = ({ user_details }) => {
           </ul>
 
           {/* Button for larger devices */}
-          {user_details ? (
+          {!user_details ? (
             <div className='space-x-2 hidden lg:flex items-center'>
               <a href='/login' className='hidden lg:flex items-center duration-300 text-brandPrimary hover:text-neutralDGrey border border-transparent hover:border-neutralDGrey px-4 py-2 rounded'>
                 Login
@@ -82,8 +87,11 @@ const Navbar = ({ user_details }) => {
             </div>
           ) : (
             <div className='flex flex-row justify-end items-center gap-4'>
-              <p>Welcome back, user!</p>
-              <IoLogOut className='text-black duration-300 hover:text-red-600 w-7 h-7 hover:scale-105 cursor-pointer' />
+              <p>Welcome back, {user_details?.Name.split(' ')[0]}!</p>
+              <IoLogOut
+                className='text-black duration-300 hover:text-red-600 w-7 h-7 hover:scale-105 cursor-pointer'
+                onClick={handleLogout}
+              />
             </div>
           )
           }

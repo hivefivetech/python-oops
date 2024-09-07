@@ -6,17 +6,21 @@ import { Input } from '@/components/ui/input';
 import axios from "axios";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
 
 const API_URL = "https://backend.srv560349.hstgr.cloud/"
-function Login({set_token}) {
+function Login({ set_token }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [open, setOpen] = React.useState(false);
 
-    const signIn = async (e) => {
+    const [showPassword, setShowPassword] = useState(false);
 
+    const signIn = async (e) => {
         e.preventDefault();
+
         try {
             setOpen(true);
             await axios.post(API_URL + 'signin_account',
@@ -72,15 +76,23 @@ function Login({set_token}) {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
+
                         <div className="relative">
                             <Lock className="absolute w-5 h-5 text-gray-400 left-3 top-1/2 transform -translate-y-1/2" />
                             <Input
-                                type="password"
+                                type={showPassword ? "text" : "password"}
                                 placeholder="Password"
-                                className="w-full pl-10 border-gray-300 rounded-md focus:ring-gray-600 focus:border-gray-600"
+                                className="w-full pl-10 pr-10 border-gray-300 rounded-md focus:ring-gray-600 focus:border-gray-600"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            <div
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <IoMdEyeOff className="w-5 h-5 text-gray-400" /> : <IoEye className="w-5 h-5 text-gray-400" />}
+                            </div>
                         </div>
+
                         <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 items-start sm:items-center justify-between">
                             <label className="inline-flex items-center text-sm text-gray-600">
                                 <input type="checkbox" className="w-4 h-4 text-gray-600 border-gray-300 rounded" />
@@ -92,21 +104,13 @@ function Login({set_token}) {
                         </div>
                         <Button
                             type="submit"
-                            onClick={signIn} 
+                            onClick={signIn}
                             className="w-full py-2 text-white bg-gray-900 hover:bg-gray-700 rounded-md"
                         >
                             Sign In
                         </Button>
                     </div>
                 </CardContent>
-                {/* <CardFooter className="text-gray-600 flex flow-row justify-start items-start gap-2 flex-wrap">
-                    <p>
-                        Don’t have an account?
-                    </p>
-                    <a href="#" className="text-gray-900 font-semibold duration-300 hover:scale-105 hover:text-gray-700">
-                        Sign up
-                    </a>
-                </CardFooter> */}
             </Card>
         </div>
     );

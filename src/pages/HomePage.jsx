@@ -8,11 +8,11 @@ import Home from '@/componentsProject/Home';
 import Navbar from '@/componentsProject/Navbar';
 import Footer from '@/componentsProject/Footer';
 
-function MainContent(user_details) {
+function MainContent({ user_details, set_token }) {
     return (
         <>
-            <Navbar user_details={user_details} />
-            <Home />
+            <Navbar user_details={user_details} set_token={set_token} />
+            <Home user_details={user_details} />
             <Services />
             <ObjectDetectionApp />
             <WhyCV />

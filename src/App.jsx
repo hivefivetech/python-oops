@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 // import Footer from './componentsProject/Footer';
@@ -26,14 +26,14 @@ function App() {
     <Router>
       {/* <Navbar /> */}
       <Routes>
-        <Route path="/" element={<MainContent user_details={token} />} />
-        <Route path="/login" element={token?<Navigate to='/'/>:<MainLogin set_token={setToken} />} />
-        <Route path="/aboutus" element={<MainAboutUs user_details={token} />} />
-        <Route path="/features" element={<MainFeatures user_details={token} />} />
-        <Route path="/blog" element={<MainBlog user_details={token} />} />
-        <Route path="/pricing" element={<MainPricing user_details={token} />} />
-        <Route path="/demo" element={<MainDemo user_details={token} />} />
-        <Route path="/contact" element={<MainContact user_details={token} />} />
+        <Route path="/" element={<MainContent user_details={token} set_token={setToken} />} />
+        <Route path="/login" element={token ? <Navigate to='/' /> : <MainLogin set_token={setToken} />} />
+        <Route path="/aboutus" element={<MainAboutUs user_details={token} set_token={setToken} />} />
+        <Route path="/features" element={<MainFeatures user_details={token} set_token={setToken} />} />
+        <Route path="/blog" element={<MainBlog user_details={token} set_token={setToken} />} />
+        <Route path="/pricing" element={<MainPricing user_details={token} set_token={setToken} />} />
+        <Route path="/demo" element={token ? <MainDemo user_details={token} set_token={setToken} /> : <Navigate to='/pricing' />} />
+        <Route path="/contact" element={<MainContact user_details={token} set_token={setToken} />} />
         <Route exact path="/create_subscription" Component={PaymentPage} />
       </Routes>
       {/* <Footer /> */}

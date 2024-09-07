@@ -5,10 +5,10 @@ import Footer from '@/componentsProject/Footer';
 import Navbar from '@/componentsProject/Navbar';
 import React from 'react';
 
-function MainContact(user_details) {
+function MainContact({ user_details, set_token }) {
     return (
         <>
-            <Navbar user_details={user_details} />
+            <Navbar user_details={user_details} set_token={set_token} />
             <Contact />
             <ContactBody />
             <Footer />

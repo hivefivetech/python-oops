@@ -7,10 +7,10 @@ import Footer from '@/componentsProject/Footer';
 import Navbar from '@/componentsProject/Navbar';
 import React from 'react';
 
-function MainFeatures(user_details) {
+function MainFeatures({ user_details, set_token }) {
     return (
         <>
-            <Navbar user_details={user_details} />
+            <Navbar user_details={user_details} set_token={set_token} />
             <Features />
             <FeaturesFirstSection />
             <FeaturesSecondSection />
