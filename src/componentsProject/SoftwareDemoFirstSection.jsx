@@ -272,18 +272,18 @@ const SoftwareDemoFirstSection = () => {
                     {selectedFiles.map((file, index) => (
                         <div key={index} className="relative w-full flex justify-center">
                             {file.type.startsWith('image/') ? (
-                                <div className='w-[900px] h-[600px] bg-white rounded-xl'>
+                                <div className='bg-white rounded-xl'>
                                     <img
                                         src={URL.createObjectURL(file)}
                                         alt={`preview-${index}`}
-                                        className={uploadMode === 'single' ? 'h-full w-full  rounded-lg' : 'w-32 h-32 object-cover rounded-lg'}
+                                        className={uploadMode === 'single' ? 'h-full w-full rounded-lg' : 'rounded-lg'}
                                     />
                                 </div>
                             ) : (
                                 <video
                                     src={URL.createObjectURL(file)}
                                     controls
-                                    className={uploadMode === 'single' ? 'w-full h-auto rounded-lg' : 'w-32 h-32 rounded-lg'}
+                                    className={uploadMode === 'single' ? 'w-full h-auto rounded-lg' : 'rounded-lg'}
                                 />
                             )}
                         </div>
@@ -349,12 +349,14 @@ const SoftwareDemoFirstSection = () => {
             {isEmailModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg p-6 w-full max-w-sm relative">
-                        <button
-                            onClick={() => setIsEmailModalOpen(false)}
-                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-                        >
-                            &times;
-                        </button>
+                        <div className='flex relative justify-end pt-5 mt-5'>
+                            <button
+                                onClick={() => setIsEmailModalOpen(false)}
+                                className="absolute top-[-24px] bg-red-500 w-10 text-white hover:bg-red-700"
+                            >
+                                &times;
+                            </button>
+                        </div>
                         <h2 className="text-lg font-semibold mb-4">Send Detection Results via Email</h2>
                         <input
                             type="email"
